@@ -1,0 +1,10 @@
+# mise 开发环境配置
+# 用法: mise install && mise use
+
+[tools]
+# 后端: go.mod 要求 Go 1.25.0+
+go = "1.25.0"
+# 前端: package.json engines 要求 Node >= 24
+node = "24"
+# 前端包管理器: package.json packageManager 指定 pnpm 10
+pnpm = "10.33.4"

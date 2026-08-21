@@ -164,7 +164,8 @@ export function detectLocale() {
 export const rtlLanguages = ["he", "ar"];
 
 export const i18n = createI18n({
-  locale: detectLocale(),
+  // 汉化：默认使用简体中文（可在“设置-个人资料”中切换其他语言）
+  locale: "zh-cn",
   fallbackLocale: "en",
   messages,
   // expose i18n.global for outside components
