@@ -7,6 +7,13 @@
         }"
       ></div>
     </div>
+    <div v-if="downloadStore.totalBytes" class="progress download">
+      <div
+        v-bind:style="{
+          width: downloadPercent + '%',
+        }"
+      ></div>
+    </div>
     <sidebar></sidebar>
     <main>
       <router-view></router-view>
@@ -26,6 +33,7 @@ import { useAuthStore } from "@/stores/auth";
 import { useLayoutStore } from "@/stores/layout";
 import { useFileStore } from "@/stores/file";
 import { useUploadStore } from "@/stores/upload";
+import { useDownloadStore } from "@/stores/download";
 import Sidebar from "@/components/Sidebar.vue";
 import Prompts from "@/components/prompts/Prompts.vue";
 import Shell from "@/components/Shell.vue";
@@ -38,10 +46,15 @@ const layoutStore = useLayoutStore();
 const authStore = useAuthStore();
 const fileStore = useFileStore();
 const uploadStore = useUploadStore();
+const downloadStore = useDownloadStore();
 const route = useRoute();
 
 const sentPercent = computed(() =>
   ((uploadStore.sentBytes / uploadStore.totalBytes) * 100).toFixed(2)
+);
+
+const downloadPercent = computed(() =>
+  ((downloadStore.sentBytes / downloadStore.totalBytes) * 100).toFixed(2)
 );
 
 watch(route, () => {

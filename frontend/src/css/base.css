@@ -150,6 +150,14 @@ html[dir="rtl"] .breadcrumbs a {
   transition: 0.2s ease width;
 }
 
+.progress.download {
+  top: 3px;
+}
+
+.progress.download div {
+  background-color: #69f0ae;
+}
+
 .break-word {
   word-break: break-all;
 }

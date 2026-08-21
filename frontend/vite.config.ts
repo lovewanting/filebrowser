@@ -31,12 +31,14 @@ export default defineConfig(({ command }) => {
       plugins,
       resolve,
       server: {
+        host: true,
+        port: 5178,
         proxy: {
           "/api/command": {
-            target: "ws://127.0.0.1:8080",
+            target: "ws://127.0.0.1:6066",
             ws: true,
           },
-          "/api": "http://127.0.0.1:8080",
+          "/api": "http://127.0.0.1:6066",
         },
       },
     };

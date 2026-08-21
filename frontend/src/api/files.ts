@@ -80,6 +80,18 @@ export async function put(url: string, content = "") {
 }
 
 export function download(format: any, ...files: string[]) {
+  // 单个文件直接下载：走带进度条的内存流式下载
+  if (files.length === 1 && !format) {
+    const filePath = removePrefix(files[0]);
+    const name = decodeURIComponent(filePath.split("/").pop() || "download");
+    const url = `${baseURL}/api/raw${filePath}?`;
+
+    void import("@/stores/download").then(({ useDownloadStore }) => {
+      useDownloadStore().download(url, name);
+    });
+    return;
+  }
+
   let url = `${baseURL}/api/raw`;
 
   if (files.length === 1) {

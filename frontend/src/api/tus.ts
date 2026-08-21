@@ -32,6 +32,8 @@ export async function upload(
       endpoint: `${origin}${baseURL}${resourcePath}`,
       chunkSize: tusSettings.chunkSize,
       retryDelays: computeRetryDelays(tusSettings),
+      // 后端不支持 Upload-Concat 并行分片协议（多分片会写同一路径导致 409），
+      // 必须为 1；上传提速依赖 chunkSize（分块大小）
       parallelUploads: 1,
       storeFingerprintForResuming: false,
       headers: {
